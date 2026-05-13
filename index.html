@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio | Booking</title>
+    <style>
+        /* --- CSS STYLING --- */
+        :root {
+            --accent: #00ff88; 
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Full-page Background */
+        .main-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('willie\ agter\ web.jpg');
+            background-size:(contain);
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* Fixed Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(51, 43, 43, 0.1);
+        }
+
+        .logo { display: flex; align-items: center; }
+        .logo img { height: 45px; width: auto; object-fit: contain; }
+
+        .nav-links button {
+            background: none;
+            border: black;
+            color: rgba(19, 1, 1, 0.7);
+            margin-left: 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links button.active { color: var(--accent); font-weight: bold; }
+
+        /* Smooth Page Transitions */
+        main { padding: 0 8%; }
+        .page {
+            display: none; /* Hidden by default */
+            min-height: 100vh;
+            padding-top: 140px;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        .page.active { display: block; } /* Show active page */
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1; }
+
+        /* 4-Photo Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 50px auto;
+        }
+        .img-item {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            transition: 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .img-item:hover { transform: scale(1.03); }
+
+        /* Cards & Forms */
+        .card { background: var(--glass); padding: 35px; border-radius: 15px; max-width: 700px; margin: 0 auto; backdrop-filter: blur(10px); }
+        input, textarea, select { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid #333; color: #fff; border-radius: 5px; }
+        
+        .btn { padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; display: block; width: 100%; text-align: center; transition: 0.3s; }
+        .btn-wa { background: #25D366; color: rgb(20, 1, 1); margin-bottom: 15px; }
+        .btn-submit { background: var(--accent); color: black; }
+        .btn:hover { opacity: 0.8; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 15px; }
+            .nav-links { margin-top: 10px; }
+            .nav-links button { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-bg"></div>
+
+    <nav>
+        <div class="logo">
+            <img src="willie logo.jpg"Logo">
+        </div>
+        <div class="nav-links">
+            <button onclick="showPage('home')" id="l-home" class="active">Home</button>
+            <button onclick="showPage('gallery')" id="l-gallery">Gallery</button>
+            <button onclick="showPage('about')" id="l-about">About</button>
+            <button onclick="showPage('booking')" id="l-booking">Booking</button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>MOMENTS<br>MADE ETERNAL.</h1>
+                <p>Professional photography and storytelling.</p>
+            </div>
+        </section>
+
+        <section id="gallery" class="page">
+            <h2 style="text-align: center; margin-bottom: 30px;">MY WORK</h2>
+            <div class="gallery-grid">
+                <div class="img-item" style="background-image: url('willie\ agter.jpg')"></div>
+                <div class="img-item" style="background-image: url('willie\ agter2.jpg')"></div>
+                <div class="img-item" style="background-image: url('willie\ agter3.jpg')"></div>
+                <div class="img-item" style="background-image: url('willie\ agter4.jpg')"></div>
+            </div>
+        </section>
+
+        <section id="about" class="page">
+            <div class="card">
+                <h2>The Photographer</h2><br>
+                <p>Capturing light and emotion for over a decade. I specialize in making the ordinary look extraordinary.</p>
+            </div>
+        </section>
+
+        <section id="booking" class="page">
+            <div class="card">
+                <h2>Book a Session</h2><br>
+                <a href="https://wa.me/+27686948978" class="btn btn-wa" target="_blank">Chat on WhatsApp</a>
+                
+                <form id="bookingForm">
+                    <input type="text" id="u-name" placeholder="Your Name" required>
+                    <select id="u-service">
+                        <option>Portrait</option>
+                        <option>Wedding</option>
+                        <option>Event</option>
+                    </select>
+                    <textarea id="u-details" placeholder="How can I help you?" rows="4" required></textarea>
+                    <button type="submit" class="btn btn-submit">Send to WhatsApp</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // FUNCTION: SWITCH PAGES
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.nav-links button');
+            buttons.forEach(b => b.classList.remove('active'));
+
+            // Show target page and button
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('l-' + pageId).classList.add('active');
+
+            window.scrollTo(0,0);
+        }
+
+        // FUNCTION: WHATSAPP INTEGRATION
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 4. CHANGE THIS TO YOUR ACTUAL PHONE NUMBER
+            const myPhone = "1234567890"; 
+            
+            const name = document.getElementById('u-name').value;
+            const service = document.getElementById('u-service').value;
+            const details = document.getElementById('u-details').value;
+
+            const text = `Hi! I'd like to book a session.%0A%0A` + 
+                         `*Name:* ${name}%0A` + 
+                         `*Service:* ${service}%0A` + 
+                         `*Details:* ${details}`;
+
+            window.open(`https://wa.me/${myPhone}?text=${text}`, '_blank');
+        });
+    </script>
+
+</body>
+</html>
